@@ -21,15 +21,15 @@ import spring.intro.model.User;
 
 public class AppConfig {
     @Autowired
-    private Environment env;
+    private Environment environment;
 
     @Bean
     public DataSource getDataSource() {
         BasicDataSource basicDataSource = new BasicDataSource();
-        basicDataSource.setDriverClassName(env.getProperty("db.driver"));
-        basicDataSource.setUrl(env.getProperty("db.url"));
-        basicDataSource.setUsername(env.getProperty("db.username"));
-        basicDataSource.setPassword(env.getProperty("db.password"));
+        basicDataSource.setDriverClassName(environment.getProperty("db.driver"));
+        basicDataSource.setUrl(environment.getProperty("db.url"));
+        basicDataSource.setUsername(environment.getProperty("db.username"));
+        basicDataSource.setPassword(environment.getProperty("db.password"));
         return basicDataSource;
     }
 
@@ -38,8 +38,8 @@ public class AppConfig {
         LocalSessionFactoryBean sessionFactoryBean = new LocalSessionFactoryBean();
         sessionFactoryBean.setDataSource(getDataSource());
         Properties properties = new Properties();
-        properties.put("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
-        properties.put("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
+        properties.put("hibernate.show_sql", environment.getProperty("hibernate.show_sql"));
+        properties.put("hibernate.hbm2ddl.auto", environment.getProperty("hibernate.hbm2ddl.auto"));
         sessionFactoryBean.setHibernateProperties(properties);
         sessionFactoryBean.setAnnotatedClasses(User.class);
         return sessionFactoryBean;
