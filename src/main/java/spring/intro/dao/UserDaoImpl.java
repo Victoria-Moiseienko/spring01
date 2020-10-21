@@ -54,7 +54,7 @@ public class UserDaoImpl implements UserDao {
             query.setParameter("userId", userId);
             return query.getSingleResult();
         } catch (Exception e) {
-            throw new RuntimeException("Failed get of users: ", e);
+            throw new RuntimeException("Failed get user by id " + userId, e);
         }
     }
 }
