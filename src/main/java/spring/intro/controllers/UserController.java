@@ -31,19 +31,19 @@ public class UserController {
         return getDto(userService.getById(userId));
     }
 
-    private UserResponseDto getDto(User user) {
-        UserResponseDto userResponseDto = new UserResponseDto();
-        userResponseDto.setId(user.getId());
-        userResponseDto.setLogin(user.getLogin());
-        userResponseDto.setPassword(user.getPassword());
-        return userResponseDto;
-    }
-
     @GetMapping("/inject")
     public void injectUserData() {
         userService.add(new User("Ivan", "1"));
         userService.add(new User("Maria", "2"));
         userService.add(new User("Petro", "3"));
         userService.add(new User("Sofia", "4"));
+    }
+
+    private UserResponseDto getDto(User user) {
+        UserResponseDto userResponseDto = new UserResponseDto();
+        userResponseDto.setId(user.getId());
+        userResponseDto.setLogin(user.getLogin());
+        userResponseDto.setPassword(user.getPassword());
+        return userResponseDto;
     }
 }
